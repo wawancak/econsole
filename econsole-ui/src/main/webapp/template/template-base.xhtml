@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Konsolidasi LKPD</title>
+</h:head>
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Konsolidasi LKPD</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+
+		<p:layout fullPage="true">
+
+			<p:layoutUnit position="north" size="50" resizable="true"
+				closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+
+			<!-- 			<p:layoutUnit position="south" size="100" closable="true" -->
+			<!-- 				collapsible="true"> -->
+			<!--                     Footer -->
+			<!--                 </p:layoutUnit> -->
+
+			<p:layoutUnit position="west" size="230"  collapsible="true" >
+				<p:panelMenu>
+					<p:submenu label="Pengaturan">
+						<p:menuitem value="User Management"
+							url="/pages/pengaturan/usman/_index.xhtml" />
+						<p:menuitem value="Akses Grup"
+							url="/pages/pengaturan/akses_grup/_index.xhtml" />
+						<p:menuitem value="Blog/Pengumuman"
+							url="/pages/pengaturan/blog/_index.xhtml" />
+
+					</p:submenu>
+
+					<p:submenu label="Parameter">
+						<p:menuitem value="Periode"
+							url="/pages/pengaturan/usman/_index.xhtml" />
+						<p:menuitem value="Bagan Akun Standar"
+							url="/pages/pengaturan/akses_grup/_index.xhtml" />
+						<p:menuitem value="Pemda"
+							url="/pages/pengaturan/blog/_index.xhtml" />
+						<p:menuitem value="Jenis Transfer"
+							url="/pages/pengaturan/akses_grup/_index.xhtml" />
+						<p:menuitem value="Wilayah"
+							url="/pages/pengaturan/blog/_index.xhtml" />
+					</p:submenu>
+
+				</p:panelMenu>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<ui:insert name="content">Content</ui:insert>
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</h:body>
+
+</f:view>
+</html>
+
