@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="./../../template/template-base.xhtml">
+
+	
+	<ui:define name="content">
+		Periode
+		
+	
+        <p:dataTable id="dataTable" var="Periode" value="Periode"
+                 paginator="true" rows="5">
+        <f:facet name="header">
+            Periode
+        </f:facet>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Kode" />
+            </f:facet>
+            
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Nama Periode" />
+            </f:facet>
+           
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Aksi" />
+            </f:facet>
+            
+        </p:column>
+ 
+       
+    </p:dataTable>
+ 
+    <p:blockUI block="dataTable" trigger="dataTable">
+        LOADING<br />
+        <p:graphicImage name="./../../images/ajaxloadingbar.gif"/>
+    </p:blockUI>
+    </ui:define>	
+     
+
+</ui:composition>
+</html>
+
