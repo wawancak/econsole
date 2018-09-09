@@ -12,6 +12,7 @@
 		<slf4j.version>1.6.1</slf4j.version>
 		<sh.spring.version>4.0.0</sh.spring.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
+		<share.version>1.0.0</share.version>
 	</properties>
 
 		<dependencies>

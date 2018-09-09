@@ -26,6 +26,11 @@
 		<!-- <version>2.1</version> -->
 		<!-- <scope>provided</scope> -->
 		<!-- </dependency> -->
+		<dependency>
+		<groupId>com.sh.djpk</groupId>
+			<artifactId>djpk-share</artifactId>
+			<version>${share.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.sun.faces</groupId>
