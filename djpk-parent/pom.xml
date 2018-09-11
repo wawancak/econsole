@@ -9,10 +9,14 @@
 	<description>Parent semua jar</description>
 	<properties>
 		<jackson.version>1.9.13</jackson.version>
-		<slf4j.version>1.6.1</slf4j.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<logback.version>1.1.2</logback.version>
 		<sh.spring.version>4.0.0</sh.spring.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
 		<share.version>1.0.0</share.version>
+		<connection.version>1.0.0</connection.version>
+		<spring.core.version>4.0.3.RELEASE</spring.core.version>
+		<jackson.version>1.9.13</jackson.version>
 	</properties>
 
 		<dependencies>
@@ -21,12 +25,24 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
+			<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		</dependencies>
 	
 	<modules>
 	<module>../connection</module>
 	<module>../djpk-share</module>
 	<module>../econsole-ui</module>
+	<module>../econsole-rest</module>
 	</modules>
 
 	<build>

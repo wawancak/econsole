@@ -19,7 +19,7 @@ public class UsmanCtl implements Template{
 		user.setNameShort("Admin");
 		user.setRole("theCreator");
 		user.setStatus("Aktive");
-		user.setUsername("admin");
+		user.setUser_name("admin");
 		list.add(user);
 		return list;
 		
