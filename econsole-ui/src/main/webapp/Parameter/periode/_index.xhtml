@@ -13,8 +13,8 @@
 		Periode
 		
 	
-        <p:dataTable id="dataTable" var="Periode" value="Periode"
-                 paginator="true" rows="5">
+        <p:dataTable id="dataTable" var="period" value="#{periodeCtl.period}"
+                 paginator="true" rows="10">
         <f:facet name="header">
             Periode
         </f:facet>
@@ -23,14 +23,14 @@
             <f:facet name="header">
                 <h:outputText value="Kode" />
             </f:facet>
-            
+            <h:outputText value="#{period.kode}" />
         </p:column>
  
         <p:column>
             <f:facet name="header">
                 <h:outputText value="Nama Periode" />
             </f:facet>
-           
+            <h:outputText value="#{period.namaPeriode}" />
         </p:column>
  
         <p:column>
@@ -43,10 +43,7 @@
        
     </p:dataTable>
  
-    <p:blockUI block="dataTable" trigger="dataTable">
-        LOADING<br />
-        <p:graphicImage name="./../../images/ajaxloadingbar.gif"/>
-    </p:blockUI>
+    
     </ui:define>	
      
 
