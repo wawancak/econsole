@@ -24,6 +24,11 @@ public class UsmanCtl implements Template{
 		return list;
 		
 	}
+	
+	public String indexButtonAdd(){
+		System.out.println("masuk sini");
+		return "_detail";
+	}
 
 	@Override
 	public String doAdd() {

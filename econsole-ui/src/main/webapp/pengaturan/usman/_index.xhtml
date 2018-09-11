@@ -6,39 +6,55 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="./../template-pengaturan.xhtml">
+<ui:composition template="./../../template/template-base.xhtml">
 
 
-	<ui:define name="content_pengaturan">
-		<p:inputText></p:inputText>
-		<p:dataTable var="userView" value="#{usmanCtl.userView}">
-			<p:column headerText="Username">
-				<h:outputText value="#{userView.username}" />
-			</p:column>
+	<ui:define name="content">
+		<h:form>
+			<div>
+				<p:outputLabel value="User Management" />
+			</div>
+			<div class="ui-g">
+				<div class="ui-g-12 ui-md-6 ui-lg-3" style="width: 100%"
+					align="left">
+					<p:button value="Tambah" outcome="_detail" />
 
-			<p:column headerText="Email">
-				<h:outputText value="#{userView.email}" />
-			</p:column>
+				</div>
+				<div class="ui-g-12 ui-md-6 ui-lg-3" style="width: 100%"
+					align="right">
+					<p:inputText placeholder="username"></p:inputText>
+				</div>
 
-			<p:column headerText="Status">
-				<h:outputText value="#{userView.status}" />
-			</p:column>
+			</div>
+			<p:dataTable var="userView" value="#{usmanCtl.userView}">
+				<p:column headerText="Username">
+					<h:outputText value="#{userView.user_name}" />
+				</p:column>
 
-			<p:column headerText="Role">
-				<h:outputText value="#{userView.role}" />
-			</p:column>
-			<p:column headerText="Nama Panjang">
-				<h:outputText value="#{userView.nameDesc}" />
-			</p:column>
-			<p:column headerText="Nama Singkatan">
-				<h:outputText value="#{userView.nameShort}" />
-			</p:column>
-			<p:column headerText="Aksi">
-				<p:commandButton icon="fa fa-eye"/>
-				<p:commandButton icon="fa fa-user"/>
-				<p:commandButton icon="fa fa-trash"/>
-			</p:column>
-		</p:dataTable>
+				<p:column headerText="Email">
+					<h:outputText value="#{userView.email}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{userView.status}" />
+				</p:column>
+
+				<p:column headerText="Role">
+					<h:outputText value="#{userView.role}" />
+				</p:column>
+				<p:column headerText="Nama Panjang">
+					<h:outputText value="#{userView.nameDesc}" />
+				</p:column>
+				<p:column headerText="Nama Singkatan">
+					<h:outputText value="#{userView.nameShort}" />
+				</p:column>
+				<p:column headerText="Aksi">
+					<p:commandButton icon="fa fa-eye" />
+					<p:commandButton icon="fa fa-user" />
+					<p:commandButton icon="fa fa-trash" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
