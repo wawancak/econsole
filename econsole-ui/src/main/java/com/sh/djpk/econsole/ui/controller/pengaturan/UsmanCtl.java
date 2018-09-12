@@ -15,11 +15,11 @@ public class UsmanCtl implements Template{
 		List<User> list = new ArrayList<User>();
 		User user = new User();
 
-//		user.setEmail("admin@gmail.com");
-//		user.setNameDesc("Administrator");
-//		user.setNameShort("Admin");
-//		user.setRole("theCreator");
-//		user.setStatus("Aktive");
+		user.setEmail("admin@gmail.com");
+		user.setNameDesc("Administrator");
+		user.setNameShort("Admin");
+		user.setRole("theCreator");
+		user.setStatus("Aktive");
 //		user.setUser_name("admin");
 		list.add(user);
 		return list;
