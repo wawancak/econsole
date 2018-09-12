@@ -1,5 +1,6 @@
 package com.sh.djpk.econsole.rest.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -22,8 +23,8 @@ public class UserSvcImpl implements UserSvc{
 	@Autowired UserDao userDao;
 	
 	@Override
-	public List<User> getAll() {
-		List<User> list = userDao.getAll();
+	public List<HashMap> getAll() {
+		List<HashMap> list = userDao.getAll();
 		LOGGER.info("data from db = {}", list);
 		return list;
 	}
