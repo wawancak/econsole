@@ -2,7 +2,7 @@ package com.sh.djpk.share.model;
 
 public class User {
 
-	private String username,email,status,role,nameDesc,nameShort;
+	private String user_name,email,status,role,nameDesc,nameShort;
 
 	
 	public String getEmail() {
@@ -49,17 +49,17 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", email=" + email + ", status="
+		return "User [username=" + user_name + ", email=" + email + ", status="
 				+ status + ", role=" + role + ", nameDesc=" + nameDesc
 				+ ", nameShort=" + nameShort + "]";
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
 		
