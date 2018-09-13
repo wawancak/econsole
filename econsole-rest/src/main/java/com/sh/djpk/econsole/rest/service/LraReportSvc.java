@@ -7,4 +7,7 @@ public interface LraReportSvc {
 
 	List<HashMap> getLraReportData(int tahunAnggaran, int periodeId,
 			int kodeLaporan, HashMap othersParam);
+
+	List<HashMap> getRefPemdaDua(int tahunAnggaran, int kodeLaporan,
+			HashMap othersParam);
 }

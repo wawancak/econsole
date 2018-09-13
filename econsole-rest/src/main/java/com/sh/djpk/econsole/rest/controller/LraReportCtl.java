@@ -39,4 +39,17 @@ public class LraReportCtl {
 		LOGGER.trace("response={}", JsonUtil.getJson(response));
 		return response;
 	}
+	
+	@RequestMapping(value = "/get_ref_pemda2", method = RequestMethod.POST)
+	public RestResponse getRefPemdaDua(
+			@RequestParam(value = "tahun_anggaran", required = true) int tahunAnggaran,
+			@RequestParam(value = "kode_laporan", required = true) int kodeLaporan,
+			@RequestBody HashMap othersParam) {
+		LOGGER.info("get_get_ref_pemda2");
+		RestResponse response = new RestResponse(RestResponse.OK_REST_STATUS,
+				"OK", null);
+		response.setContents(lraReportSvc.getRefPemdaDua(tahunAnggaran, kodeLaporan, othersParam));
+		LOGGER.trace("response={}", JsonUtil.getJson(response));
+		return response;
+	}
 }

@@ -17,5 +17,8 @@ public interface LraReportDao {
 	List<HashMap> getLraReportData(@Param("tahunAnggaran") int tahunAnggaran,
 			@Param("periodeId") int periodeId,
 			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
+	
+	List<HashMap> getRefPemdaDua(@Param("tahunAnggaran") int tahunAnggaran,
+			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
 
 }

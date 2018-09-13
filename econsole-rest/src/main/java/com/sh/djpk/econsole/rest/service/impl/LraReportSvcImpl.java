@@ -35,4 +35,15 @@ public class LraReportSvcImpl implements LraReportSvc {
 		return l;
 	}
 
+	@Override
+	public List<HashMap> getRefPemdaDua(int tahunAnggaran, int kodeLaporan,
+			HashMap othersParam) {
+		LOGGER.info(
+				"try get data ref_pemda2 tahunAnggaran={}, kodeLaporan={}, othersParam={}",
+				tahunAnggaran, kodeLaporan, othersParam);
+		List<HashMap> l = lraReportDao.getRefPemdaDua(tahunAnggaran, kodeLaporan, othersParam);
+		LOGGER.trace("data from db={}", l);
+		return l;
+	}
+
 }

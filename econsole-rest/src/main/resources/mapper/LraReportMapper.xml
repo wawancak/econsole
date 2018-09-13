@@ -19,33 +19,80 @@
 		<where>
 			a.tahun = b.tahun
 			and a.kd_pemda = b.kd_pemda
-			and a.kd_rek_1 = b.kd_rek_1
+			and a.kd_rek_1 =
+			b.kd_rek_1
 			and a.kd_rek_2 = b.kd_rek_2
 			and a.kd_rek_3 = b.kd_rek_3
-			and a.kd_rek_4 = b.kd_rek_4
+			and
+			a.kd_rek_4 = b.kd_rek_4
 			and a.kd_rek_5 = b.kd_rek_5
-			and a.kd_provinsi = b.kd_provinsi
+			and a.kd_provinsi =
+			b.kd_provinsi
 			and a.kd_satker=b.kd_satker
-			and a.periode_id = b.periode_id
+			and a.periode_id =
+			b.periode_id
 			and a.perubahan_id = b.perubahan_id
 		</where>
 		), 0))
 		setelah_eliminasi
 		FROM compilation_record5 a
 		<where>
-			EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
-			AND a.periode_id = #{periodeId}
+			EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran}
+			AND a.periode_id =
+			#{periodeId}
 			<if test="kodeLaporan == 4">
-				AND a.kd_pemda = #{othersParam.kd_pemda}
+				AND a.kd_pemda = #{othersParam.kdpemda}
 			</if>
 			<if test="kodeLaporan == 3">
-				AND a.kd_pemda in (select concat(a.kdprovinsi,'.', a.kdpemda) from ref_pemda2 a where kdprovinsi = #{othersParam.kdprovinsi})
+				AND a.kd_pemda in (select concat(a.kdprovinsi,'.',
+				a.kdpemda) from ref_pemda2 a where kdprovinsi =
+				#{othersParam.kdprovinsi})
 			</if>
 			<if test="kodeLaporan == 2">
-				AND a.kd_pemda in (select concat(a.kdprovinsi,'.', a.kdpemda) from ref_pemda2 a where kwilayah = #{othersParam.kwilayah})
+				AND a.kd_pemda in (select concat(a.kdprovinsi,'.',
+				a.kdpemda) from ref_pemda2 a where kwilayah =
+				#{othersParam.kwilayah})
 			</if>
 		</where>
 
+	</select>
+
+	<select id="getRefPemdaDua" resultType="hashmap">
+		<if test="kodeLaporan == 4">
+			select 
+			concat(a.kdprovinsi,'.', a.kdpemda) kdpemda, 
+			concat(a.kdprovinsi,'.', a.kdpemda, ' ', a.urpemda) urpemda 
+			from ref_pemda2 a			
+			<where>			
+				EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+				<if test="othersParam.kdprovinsi != null">
+					and a.kdprovinsi = #{othersParam.kdprovinsi}
+				</if>
+				<if test="othersParam.kwilayah != null">
+					and a.kwilayah = #{othersParam.kwilayah}
+				</if>
+			</where>
+		</if>
+		<if test="kodeLaporan == 3">
+			select 
+			distinct a.kdprovinsi, concat(a.kdprovinsi,' ', a.urpemda) urpemda 
+			from ref_pemda2 a 
+			<where>
+				a.kdpemda = '00' and EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+				<if test="othersParam.kwilayah != null">
+					and a.kwilayah = #{othersParam.kwilayah}
+				</if>
+			</where>
+		</if>
+		<if test="kodeLaporan == 2">
+			select distinct a.kwilayah, concat(a.kwilayah, ' ',b.nama_wilayah) 
+			from ref_pemda2 a 
+			inner join ref_wilayah b on a.kwilayah = b.id 
+			<where>
+				EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+			</where>			
+			order by a.kwilayah asc
+		</if>
 	</select>
 
 </mapper>
