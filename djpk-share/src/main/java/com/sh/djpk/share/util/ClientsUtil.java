@@ -20,7 +20,7 @@ public class ClientsUtil {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(ClientsUtil.class);
 
-	protected final static String WS_URL = "localhost:6060/console-rest";
+	protected final static String WS_URL = "http://localhost:6060/econsole-rest";
 
 	public static RestResponse callWs(String uri, Object sentObject,
 			HttpMethod httpMethod, String... params) throws Exception {
