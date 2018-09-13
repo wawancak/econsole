@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="./../../template/template-base.xhtml">
+
+
+	<ui:define name="content">
+		<h:form>
+			<div>
+				<p:outputLabel value="Pelaporan" />
+			</div>
+			<div>
+				<p:selectOneMenu id="lazy" value="#{pelaporan.selectedJenisLaporan}"
+					lazy="true" style="width:125px">
+					<f:selectItems value="#{pelaporan.selectOneJenisLaporan}"
+						var="jenisLaporan" itemValue="#{jenisLaporan.global_param_value}"
+						itemLabel="#{jenisLaporan.global_param_label}">
+					</f:selectItems>
+				</p:selectOneMenu>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+
