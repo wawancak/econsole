@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sh.djpk.econsole.rest.dao.LraReportDao">
+
+	<select id="getLraReportData" resultType="hashmap">
+		SELECT
+		a.kd_rek_1, a.kd_rek_2, a.kd_rek_3, a.kd_rek_4,
+		a.kd_rek_5,
+		nm_rek_1, nm_rek_2,
+		nm_rek_3, nm_rek_4, nm_rek_5,
+		COALESCE(a.realisasi,0)
+		sebelum_eliminasi,
+		(COALESCE(a.realisasi,0) -
+		COALESCE((select COALESCE(b.realisasi,0) from compilation_record5 b
+		inner join elimination_account c on b.tahun = c.tahun and b.kd_pemda =
+		c.kd_pemda and b.kd_rek_1 = c.kd_rek_1 and b.kd_rek_2 = c.kd_rek_2 and
+		b.kd_rek_3 = c.kd_rek_3 and b.kd_rek_4 = c.kd_rek_4 and b.kd_rek_5 =
+		c.kd_rek_5
+		<where>
+			a.tahun = b.tahun
+			and a.kd_pemda = b.kd_pemda
+			and a.kd_rek_1 = b.kd_rek_1
+			and a.kd_rek_2 = b.kd_rek_2
+			and a.kd_rek_3 = b.kd_rek_3
+			and a.kd_rek_4 = b.kd_rek_4
+			and a.kd_rek_5 = b.kd_rek_5
+			and a.kd_provinsi = b.kd_provinsi
+			and a.kd_satker=b.kd_satker
+			and a.periode_id = b.periode_id
+			and a.perubahan_id = b.perubahan_id
+		</where>
+		), 0))
+		setelah_eliminasi
+		FROM compilation_record5 a
+		<where>
+			EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+			AND a.periode_id = #{periodeId}
+			<if test="kodeLaporan == 4">
+				AND a.kd_pemda = #{othersParam.kd_pemda}
+			</if>
+			<if test="kodeLaporan == 3">
+				AND a.kd_pemda in (select concat(a.kdprovinsi,'.', a.kdpemda) from ref_pemda2 a where kdprovinsi = #{othersParam.kdprovinsi})
+			</if>
+			<if test="kodeLaporan == 2">
+				AND a.kd_pemda in (select concat(a.kdprovinsi,'.', a.kdpemda) from ref_pemda2 a where kwilayah = #{othersParam.kwilayah})
+			</if>
+		</where>
+
+	</select>
+
+</mapper>

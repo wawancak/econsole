@@ -22,9 +22,9 @@
     </appender>
     <!-- END APPENDERs DECLARATION -->    
    
-	<logger name="sh.app.core.krs" level="DEBUG" />
+	<logger name="com.sh.djpk" level="DEBUG" />
 	
-    <root level="debug">
+    <root level="DEBUG">
         <appender-ref ref="console" />
         <appender-ref ref="fileAppender" />
     </root>
