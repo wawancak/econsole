@@ -13,6 +13,7 @@
 				and global_param_value = #{globalParamValue}
 			</if>
 		</where>
+		order by global_param_parent, global_param_value asc
 	</select>
 
 </mapper>
