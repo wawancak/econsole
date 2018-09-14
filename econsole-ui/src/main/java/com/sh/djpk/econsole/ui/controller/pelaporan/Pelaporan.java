@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
@@ -37,7 +38,7 @@ public class Pelaporan {
 	String selectedJenisLaporan;
 
 	List<Map<String, Object>> selectOneOthers = new ArrayList<Map<String, Object>>();
-	String selectedOthers = "";
+	String selectedOthers;
 
 	List<Map<String, Object>> selectOnePeriodeLaporan = new ArrayList<Map<String, Object>>();
 	String selectedPeriodeLaporan;
@@ -86,9 +87,9 @@ public class Pelaporan {
 		List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
 				"/lra_report/get_ref_pemda2", params, HttpMethod.POST,
 				"kode_laporan=" + jenisLaporan, "tahun_anggaran=2016");
-		if (l != null && !l.isEmpty()) {
-			selectedOthers = (String) l.get(0).get("value_cb");
-		}
+//		if (l != null && !l.isEmpty()) {
+//			selectedOthers = (String) l.get(0).get("value_cb");
+//		}
 		return l;
 	}
 

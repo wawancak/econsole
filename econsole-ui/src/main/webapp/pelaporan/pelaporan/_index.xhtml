@@ -27,7 +27,7 @@
 
 				</p:selectOneMenu>
 				<p:spacer />
-				<p:selectOneMenu id="cbOthers" lazy="true" style="width:125px">
+				<p:selectOneMenu id="cbOthers" lazy="true" style="width:125px" value="#{pelaporan.selectedOthers}">
 					<f:selectItems value="#{pelaporan.selectOneOthers}" var="others"
 						itemValue="#{others.value_cb}" itemLabel="#{others.label_cb}">
 					</f:selectItems>
