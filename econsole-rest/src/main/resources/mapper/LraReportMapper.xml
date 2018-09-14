@@ -52,7 +52,7 @@
 			<if test="kodeLaporan == 2">
 				AND a.kd_pemda in (select concat(a.kdprovinsi,'.',
 				a.kdpemda) from ref_pemda2 a where kwilayah =
-				#{othersParam.value_cb})
+				to_number(#{othersParam.value_cb},'999'))
 			</if>
 		</where>
 

@@ -77,6 +77,7 @@ public class Pelaporan {
 		LOGGER.info("<<val={}>>", val);
 		int kodeLaporan = NumberUtils.toInteger(val);
 		selectOneOthers = new ArrayList<Map<String, Object>>();
+		dataPencarian = new ArrayList<Map<String,Object>>();
 		if (kodeLaporan == 2 || kodeLaporan == 3 || kodeLaporan == 4) {
 			selectOneOthers = getDataSelectOthers(kodeLaporan);
 		}
@@ -97,7 +98,11 @@ public class Pelaporan {
 		LOGGER.info("<<CARI>>");
 		LOGGER.info("jenis laporan = {}, periode laporan ={}, others={}",
 				selectedJenisLaporan, selectedPeriodeLaporan, selectedOthers);
-		dataPencarian = ambilData();
+		int kodeLaporan = NumberUtils.toInteger(selectedJenisLaporan);
+		if (kodeLaporan == 1 || kodeLaporan == 2 || kodeLaporan == 3 || kodeLaporan == 4) {
+			dataPencarian = ambilData();
+		}
+		
 	}
 
 	public List<Map<String, Object>> getSelectOneJenisLaporan() {

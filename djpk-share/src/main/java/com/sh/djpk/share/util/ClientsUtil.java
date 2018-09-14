@@ -160,7 +160,7 @@ public class ClientsUtil {
 		}
 		RestResponse restResponse = JsonUtil.mapJsonToRestResponse(conn
 				.getInputStream());
-		LOGGER.info("response from ws={}", JsonUtil.getJson(restResponse));
+		LOGGER.trace("response from ws={}", JsonUtil.getJson(restResponse));
 		return restResponse;
 	}
 
