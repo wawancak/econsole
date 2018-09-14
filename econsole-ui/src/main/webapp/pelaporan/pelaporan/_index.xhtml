@@ -14,14 +14,64 @@
 			<div>
 				<p:outputLabel value="Pelaporan" />
 			</div>
-			<div>
-				<p:selectOneMenu id="lazy" value="#{pelaporan.selectedJenisLaporan}"
-					lazy="true" style="width:125px">
+			<div id="rr">
+				<p:selectOneMenu id="cbJenisLaporan" onchange="submit()"
+					valueChangeListener="#{pelaporan.chooseJenisLaporan}"
+					value="#{pelaporan.selectedJenisLaporan}" lazy="true"
+					style="width:125px">
 					<f:selectItems value="#{pelaporan.selectOneJenisLaporan}"
 						var="jenisLaporan" itemValue="#{jenisLaporan.global_param_value}"
 						itemLabel="#{jenisLaporan.global_param_label}">
+						<!-- 						<f:ajax listener="#{pelaporan.chooseJenisLaporan}"/> -->
+					</f:selectItems>
+
+				</p:selectOneMenu>
+				<p:spacer />
+				<p:selectOneMenu id="cbOthers" lazy="true" style="width:125px">
+					<f:selectItems value="#{pelaporan.selectOneOthers}" var="others"
+						itemValue="#{others.value_cb}" itemLabel="#{others.label_cb}">
 					</f:selectItems>
 				</p:selectOneMenu>
+
+			</div>
+
+			<p:selectOneMenu id="cbPeriodeLaporan"
+				value="#{pelaporan.selectedPeriodeLaporan}" lazy="true"
+				style="width:125px">
+				<f:selectItems value="#{pelaporan.selectOnePeriodeLaporan}"
+					var="periode" itemValue="#{periode.global_param_value}"
+					itemLabel="#{periode.global_param_label}">
+				</f:selectItems>
+			</p:selectOneMenu>
+			<p:commandButton value="Cari" action="#{pelaporan.cari()}"
+				update="listData" ajax="false" />
+			<div>
+
+				<p:dataTable id="listData" var="dataKeluar"
+					value="#{pelaporan.dataPencarian}">
+					<p:column headerText="Kelompok">
+						<h:outputText value="#{dataKeluar.kd_rek_1}" />
+					</p:column>
+
+					<p:column headerText="Kode Akun">
+						<h:outputText value="#{dataKeluar.kode_akun}" />
+					</p:column>
+
+					<p:column headerText="Uraian">
+						<h:outputText value="#{dataKeluar.nm_rek_5}" />
+					</p:column>
+
+					<p:column headerText="Sebelum Eliminasi">
+						<h:outputText value="#{dataKeluar.sebelum_eliminasi}" />
+					</p:column>
+
+					<p:column headerText="Sesudah Eliminasi">
+						<h:outputText value="#{dataKeluar.setelah_eliminasi}" />
+					</p:column>
+
+
+				</p:dataTable>
+
 			</div>
 		</h:form>
 	</ui:define>
