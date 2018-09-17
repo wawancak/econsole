@@ -10,31 +10,53 @@
 
 	
 	<ui:define name="content">
-		Periode
+		Rekening Level 3
 		
 	
-        <p:dataTable id="dataTable" var="period" value="#{periodeCtl.period}"
+        <p:dataTable id="dataTable" var="mapAkun" value="#{akunLevel3Ctl.mapAkun}"
                  paginator="true" 
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" 
                  paginatorPosition="bottom"
-                 rows="10">
+                 rows="20">
         <f:facet name="header">
-            Periode
+            Rekening Level 3
         </f:facet>
  
         <p:column>
             <f:facet name="header">
-                <h:outputText value="Kode" />
+                <h:outputText value="Kd Akrual 1" />
             </f:facet>
-            <h:outputText value="#{period.kode}" />
+            <h:outputText value="#{mapAkun.kd_akrual_1}" />
         </p:column>
- 
+ 		
+ 		<p:column>
+            <f:facet name="header">
+                <h:outputText value="Kd Akrual 2" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.kd_akrual_2}" />
+        </p:column>
+        
         <p:column>
             <f:facet name="header">
-                <h:outputText value="Nama Periode" />
+                <h:outputText value="Kd Akrual 3" />
             </f:facet>
-            <h:outputText value="#{period.namaPeriode}" />
+            <h:outputText value="#{mapAkun.kd_akrual_3}" />
         </p:column>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Nama Akrual 3" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.nm_akrual_3}" />
+        </p:column>
+        
+         <p:column>
+            <f:facet name="header">
+                <h:outputText value="Saldo Norm" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.saldonorm}" />
+        </p:column>
+        
  
         <p:column>
             <f:facet name="header">
