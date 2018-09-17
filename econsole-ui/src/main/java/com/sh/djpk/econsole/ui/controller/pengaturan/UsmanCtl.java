@@ -1,16 +1,24 @@
 package com.sh.djpk.econsole.ui.controller.pengaturan;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import com.sh.djpk.share.model.User;
 
 @ManagedBean
-public class UsmanCtl implements Template{
+@ViewScoped
+public class UsmanCtl  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public List<User> getUserView(){
 		List<User> list = new ArrayList<User>();
 		User user = new User();
@@ -31,16 +39,6 @@ public class UsmanCtl implements Template{
 		return "_detail";
 	}
 
-	@Override
-	public String doAdd() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getMenuName() {
-		return "Usman";
-	}
 
 	
 }

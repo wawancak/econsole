@@ -14,11 +14,13 @@ public interface LraReportDao {
 //             5 => 'Rekapitulasi Akun Eliminasi',
 //             6 => 'Monitoring Data Per Periode',   
 //             7 => 'Monitoring Akun Eliminasi',        
-	List<HashMap> getLraReportData(@Param("tahunAnggaran") int tahunAnggaran,
+	List<HashMap> getLraReportData(@Param("tahunAnggaran") String tahunAnggaran,
 			@Param("periodeId") int periodeId,
 			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
 	
-	List<HashMap> getRefPemdaDua(@Param("tahunAnggaran") int tahunAnggaran,
+	List<HashMap> getRefPemdaDua(@Param("tahunAnggaran") String tahunAnggaran,
 			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
+	
+	List<HashMap> getPeriodeCb();
 
 }

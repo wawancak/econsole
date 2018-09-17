@@ -17,6 +17,7 @@
 		<connection.version>1.0.0</connection.version>
 		<spring.core.version>4.0.3.RELEASE</spring.core.version>
 		<jackson.version>1.9.13</jackson.version>
+		<poi.version>3.16</poi.version>
 	</properties>
 
 		<dependencies>
@@ -39,8 +40,8 @@
 		</dependencies>
 	
 	<modules>
-	<module>../connection</module>
 	<module>../djpk-share</module>
+	<module>../connection</module>	
 	<module>../econsole-ui</module>
 	<module>../econsole-rest</module>
 	</modules>

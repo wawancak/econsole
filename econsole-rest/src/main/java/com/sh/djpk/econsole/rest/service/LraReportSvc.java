@@ -10,4 +10,6 @@ public interface LraReportSvc {
 
 	List<HashMap> getRefPemdaDua(int tahunAnggaran, int kodeLaporan,
 			HashMap othersParam);
+	
+	List<HashMap> getPeriodeCb();
 }

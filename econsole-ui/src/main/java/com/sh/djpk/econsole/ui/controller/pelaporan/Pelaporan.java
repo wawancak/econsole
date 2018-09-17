@@ -1,5 +1,7 @@
 package com.sh.djpk.econsole.ui.controller.pelaporan;
 
+import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.event.ValueChangeListener;
 
+import org.primefaces.model.StreamedContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +24,12 @@ import com.sh.djpk.share.util.NumberUtils;
 
 @ManagedBean
 @ViewScoped
-public class Pelaporan {
+public class Pelaporan implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public static final Logger LOGGER = LoggerFactory
 			.getLogger(Pelaporan.class);
@@ -31,6 +39,7 @@ public class Pelaporan {
 	public Pelaporan() {
 		selectOneJenisLaporan = getDataSelectOneJenisLaporan();
 		selectOnePeriodeLaporan = getDataSelectOnePeriodeLaporan();
+		selectOneDownload = getDataSelectOneDownload();
 		// selectOneOthers = getDataSelectOthers(4);
 	}
 
@@ -43,6 +52,9 @@ public class Pelaporan {
 	List<Map<String, Object>> selectOnePeriodeLaporan = new ArrayList<Map<String, Object>>();
 	String selectedPeriodeLaporan;
 
+	List<Map<String, Object>> selectOneDownload = new ArrayList<Map<String, Object>>();
+	String selectedDownload;
+
 	List<Map<String, Object>> dataPencarian = new ArrayList<Map<String, Object>>();
 
 	public List<Map<String, Object>> getDataSelectOneJenisLaporan() {
@@ -52,10 +64,16 @@ public class Pelaporan {
 		return l;
 	}
 
-	public List<Map<String, Object>> getDataSelectOnePeriodeLaporan() {
+	public List<Map<String, Object>> getDataSelectOneDownload() {
 		List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
 				"/global_param/get_all_data", null, HttpMethod.GET,
-				"global_param_parent=PERIODE_LAPORAN");
+				"global_param_parent=DOWNLOAD");
+		return l;
+	}
+
+	public List<Map<String, Object>> getDataSelectOnePeriodeLaporan() {
+		List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
+				"/lra_report/get_periode", null, HttpMethod.GET);
 		return l;
 	}
 
@@ -77,9 +95,21 @@ public class Pelaporan {
 		LOGGER.info("<<val={}>>", val);
 		int kodeLaporan = NumberUtils.toInteger(val);
 		selectOneOthers = new ArrayList<Map<String, Object>>();
-		dataPencarian = new ArrayList<Map<String,Object>>();
+		dataPencarian = new ArrayList<Map<String, Object>>();
 		if (kodeLaporan == 2 || kodeLaporan == 3 || kodeLaporan == 4) {
 			selectOneOthers = getDataSelectOthers(kodeLaporan);
+		}
+	}
+	
+	//TODO memilih download
+	public void chooseDownload(ValueChangeEvent event) {
+		LOGGER.info("<<chooseDownload>>");
+		String val = event.getNewValue().toString();
+		LOGGER.info("<<val={}>>", val);
+		if("JSON".equals(val)){
+//			InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/demo/images/boromir.jpg");
+//			InputStream stream = new 
+//			StreamedContent  file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_boromir.jpg");
 		}
 	}
 
@@ -88,9 +118,9 @@ public class Pelaporan {
 		List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
 				"/lra_report/get_ref_pemda2", params, HttpMethod.POST,
 				"kode_laporan=" + jenisLaporan, "tahun_anggaran=2016");
-//		if (l != null && !l.isEmpty()) {
-//			selectedOthers = (String) l.get(0).get("value_cb");
-//		}
+		// if (l != null && !l.isEmpty()) {
+		// selectedOthers = (String) l.get(0).get("value_cb");
+		// }
 		return l;
 	}
 
@@ -99,10 +129,11 @@ public class Pelaporan {
 		LOGGER.info("jenis laporan = {}, periode laporan ={}, others={}",
 				selectedJenisLaporan, selectedPeriodeLaporan, selectedOthers);
 		int kodeLaporan = NumberUtils.toInteger(selectedJenisLaporan);
-		if (kodeLaporan == 1 || kodeLaporan == 2 || kodeLaporan == 3 || kodeLaporan == 4) {
+		if (kodeLaporan == 1 || kodeLaporan == 2 || kodeLaporan == 3
+				|| kodeLaporan == 4) {
 			dataPencarian = ambilData();
 		}
-		
+
 	}
 
 	public List<Map<String, Object>> getSelectOneJenisLaporan() {
@@ -169,6 +200,22 @@ public class Pelaporan {
 
 	public void setDataPencarian(List<Map<String, Object>> dataPencarian) {
 		this.dataPencarian = dataPencarian;
+	}
+
+	public List<Map<String, Object>> getSelectOneDownload() {
+		return selectOneDownload;
+	}
+
+	public void setSelectOneDownload(List<Map<String, Object>> selectOneDownload) {
+		this.selectOneDownload = selectOneDownload;
+	}
+
+	public String getSelectedDownload() {
+		return selectedDownload;
+	}
+
+	public void setSelectedDownload(String selectedDownload) {
+		this.selectedDownload = selectedDownload;
 	}
 
 }

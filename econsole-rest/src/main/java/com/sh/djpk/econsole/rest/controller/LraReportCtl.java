@@ -52,4 +52,14 @@ public class LraReportCtl {
 		LOGGER.trace("response={}", JsonUtil.getJson(response));
 		return response;
 	}
+	
+	@RequestMapping(value = "/get_periode", method = RequestMethod.GET)
+	public RestResponse getPeriode() {
+		LOGGER.info("get_periode");
+		RestResponse response = new RestResponse(RestResponse.OK_REST_STATUS,
+				"OK", null);
+		response.setContents(lraReportSvc.getPeriodeCb());
+		LOGGER.trace("response={}", JsonUtil.getJson(response));
+		return response;
+	}
 }

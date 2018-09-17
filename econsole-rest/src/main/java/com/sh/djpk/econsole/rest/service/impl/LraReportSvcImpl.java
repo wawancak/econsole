@@ -29,7 +29,8 @@ public class LraReportSvcImpl implements LraReportSvc {
 		LOGGER.info(
 				"try get data lra report tahunAnggaran={}, periodeId={}, kodeLaporan={}, othersParam={}",
 				tahunAnggaran, periodeId, kodeLaporan, othersParam);
-		List<HashMap> l = lraReportDao.getLraReportData(tahunAnggaran,
+		String thnAng = String.valueOf(tahunAnggaran);
+		List<HashMap> l = lraReportDao.getLraReportData(thnAng,
 				periodeId, kodeLaporan, othersParam);
 		LOGGER.trace("data from db={}", l);
 		return l;
@@ -41,8 +42,17 @@ public class LraReportSvcImpl implements LraReportSvc {
 		LOGGER.info(
 				"try get data ref_pemda2 tahunAnggaran={}, kodeLaporan={}, othersParam={}",
 				tahunAnggaran, kodeLaporan, othersParam);
-		List<HashMap> l = lraReportDao.getRefPemdaDua(tahunAnggaran, kodeLaporan, othersParam);
+		String thnAng = String.valueOf(tahunAnggaran);
+		List<HashMap> l = lraReportDao.getRefPemdaDua(thnAng, kodeLaporan, othersParam);
 		LOGGER.trace("data from db={}", l);
+		return l;
+	}
+
+	@Override
+	public List<HashMap> getPeriodeCb() {
+		LOGGER.info(
+				"try get data periode to combobox");
+		List<HashMap> l = lraReportDao.getPeriodeCb();
 		return l;
 	}
 

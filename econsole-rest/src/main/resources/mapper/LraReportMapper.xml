@@ -38,7 +38,7 @@
 		setelah_eliminasi
 		FROM compilation_record5 a
 		<where>
-			EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran}
+			a.tahun = #{tahunAnggaran}
 			AND a.periode_id =
 			#{periodeId}
 			<if test="kodeLaporan == 4">
@@ -55,7 +55,8 @@
 				to_number(#{othersParam.value_cb},'999'))
 			</if>
 		</where>
-
+		order by a.kd_rek_1, a.kd_rek_2, a.kd_rek_3, a.kd_rek_4,
+		a.kd_rek_5 asc
 	</select>
 
 	<select id="getRefPemdaDua" resultType="hashmap">
@@ -65,7 +66,7 @@
 			concat(a.kdprovinsi,'.', a.kdpemda, ' ', a.urpemda) label_cb 
 			from ref_pemda2 a			
 			<where>			
-				EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran}
+				a.tahun = #{tahunAnggaran}
 				and  a.kdpemda != '00'  
 				<if test="othersParam.kdprovinsi != null">
 					and a.kdprovinsi = #{othersParam.kdprovinsi}
@@ -80,7 +81,7 @@
 			distinct a.kdprovinsi value_cb, concat(a.kdprovinsi,' ', a.urpemda) label_cb 
 			from ref_pemda2 a 
 			<where>
-				a.kdpemda = '00' and EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+				a.kdpemda = '00' and a.tahun = #{tahunAnggaran} 
 				<if test="othersParam.kwilayah != null">
 					and a.kwilayah = #{othersParam.kwilayah}
 				</if>
@@ -91,10 +92,14 @@
 			from ref_pemda2 a 
 			inner join ref_wilayah b on a.kwilayah = b.id 
 			<where>
-				EXTRACT(YEAR FROM a.tahun) = #{tahunAnggaran} 
+				a.tahun = #{tahunAnggaran} 
 			</where>			
 			order by 1 asc
 		</if>
+	</select>
+	
+	<select id="getPeriodeCb" resultType="hashmap">
+		select id, concat(id, '. ', name) nama from periode order by id asc
 	</select>
 
 </mapper>
