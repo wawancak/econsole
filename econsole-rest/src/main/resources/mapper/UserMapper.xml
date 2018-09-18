@@ -3,11 +3,15 @@
 <mapper namespace="com.sh.djpk.econsole.rest.dao.UserDao">
 
 	<select id="getAllPaging" resultType="hashmap">
-		select id, kd_user, auth_key, email, username, status, pemda_id from
-		econsole.user
+		select u.id, u.kd_user, u.auth_key, u.email, u.username, u.status, u.pemda_id, 
+		aa.item_name as role, ru.name ref_user_name, rp.urpemda nama_pemda
+		from econsole.user u
+		left join auth_assignment aa on u.id = aa.user_id
+		left join ref_user ru on u.kd_user = ru.id
+		left join ref_pemda2 rp on u.pemda_id = concat(rp.kdprovinsi,'.',rp.kdpemda)  and rp.tahun = cast(extract(year from now()) as text) 
 		<where>
 			<if test="params.username != null">
-				username like #{params.username}
+				u.username like #{params.username}
 			</if>
 		</where>
 		order by ${orderBy} ${direction}

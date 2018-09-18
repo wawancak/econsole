@@ -22,31 +22,36 @@
 				</div>
 				<div class="ui-g-12 ui-md-6 ui-lg-3" style="width: 100%"
 					align="right">
-					<p:inputText placeholder="username"></p:inputText>
+					<p:inputText value="#{usmanCtl.searchIndexUsername}"
+						placeholder="username" onchange="submit()"
+						valueChangeListener="#{usmanCtl.eventChangeUsername}"></p:inputText>
 				</div>
 
 			</div>
-			<p:dataTable var="userView" value="#{usmanCtl.userView}">
+			<p:dataTable var="listUser" value="#{usmanCtl.listUser}"
+				paginator="true" rows="20"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
 				<p:column headerText="Username">
-					<h:outputText value="#{userView.user_name}" />
+					<h:outputText value="#{listUser.username}" />
 				</p:column>
 
 				<p:column headerText="Email">
-					<h:outputText value="#{userView.email}" />
+					<h:outputText value="#{listUser.email}" />
 				</p:column>
 
 				<p:column headerText="Status">
-					<h:outputText value="#{userView.status}" />
+					<h:outputText
+						value="#{listUser.status eq 10 ? 'Active' : (listUser.status eq 1 ? 'Inactive' : 'Deleted')}" />
 				</p:column>
 
 				<p:column headerText="Role">
-					<h:outputText value="#{userView.role}" />
+					<h:outputText value="#{listUser.role}" />
 				</p:column>
-				<p:column headerText="Nama Panjang">
-					<h:outputText value="#{userView.nameDesc}" />
+				<p:column headerText="Kd User">
+					<h:outputText value="#{listUser.ref_user_name}" />
 				</p:column>
-				<p:column headerText="Nama Singkatan">
-					<h:outputText value="#{userView.nameShort}" />
+				<p:column headerText="Pemda">
+					<h:outputText value="#{listUser.nama_pemda}" />
 				</p:column>
 				<p:column headerText="Aksi">
 					<p:commandButton icon="fa fa-eye" />

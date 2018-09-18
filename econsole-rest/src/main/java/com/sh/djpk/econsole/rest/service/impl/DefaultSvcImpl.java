@@ -29,6 +29,12 @@ public class DefaultSvcImpl implements DefaultSvc{
 		LOGGER.info("result from database : {}", list);
 		return list;
 	}
+
+	@Override
+	public void updateSearchPath() {
+		LOGGER.info("update search_path");
+		defaultDao.updateSearchPath();
+	}
 	
 	
 }

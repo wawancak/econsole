@@ -38,6 +38,16 @@ public class DefaultCtl {
 		response.setContents(defaultSvc.getCurrentTImestamp());
 		return response;
 	}
+	
+	@RequestMapping(value = "/update_search_path", method = RequestMethod.GET)
+	public RestResponse updateSearchPath() {
+		LOGGER.info("update_search_path");
+		RestResponse response = new RestResponse(RestResponse.OK_REST_STATUS,
+				"OK", null);
+		defaultSvc.updateSearchPath();
+		response.setContents("search_path updated");
+		return response;
+	}
 
 	final String DATA_COUNT = "count";
 

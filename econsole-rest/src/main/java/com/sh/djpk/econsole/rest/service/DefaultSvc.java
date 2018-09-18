@@ -7,4 +7,5 @@ public interface DefaultSvc {
 
 	public List<HashMap> getCurrentTImestamp();
 	
+	public void updateSearchPath();
 }
