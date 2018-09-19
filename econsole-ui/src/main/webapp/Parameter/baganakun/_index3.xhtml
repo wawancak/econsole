@@ -5,22 +5,26 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+<h:form>
 
 <ui:composition template="./../../template/template-base.xhtml">
 
 	
 	<ui:define name="content">
 		Rekening Level 3
-		
 	
         <p:dataTable id="dataTable" var="mapAkun" value="#{akunLevel3Ctl.mapAkun}"
                  paginator="true" 
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" 
                  paginatorPosition="bottom"
                  rows="20">
+                
         <f:facet name="header">
             Rekening Level 3
+            
+            
         </f:facet>
+        
  
         <p:column>
             <f:facet name="header">
@@ -77,5 +81,6 @@
      
 
 </ui:composition>
+</h:form>
 </html>
 
