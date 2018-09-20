@@ -77,16 +77,27 @@ public class Pelaporan implements Serializable {
 		return l;
 	}
 
-	public List<Map<String, Object>> ambilData() {
-		Map<String, Object> othersParam = new HashMap<String, Object>();
-		othersParam.put("value_cb", selectedOthers);
-		List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
-				"/lra_report/get_lra_report_data", othersParam,
-				HttpMethod.POST, "tahun_anggaran=2016", "periode_id="
-						+ selectedPeriodeLaporan, "kode_laporan="
-						+ selectedJenisLaporan);
-		return l;
-	}
+	 public List<Map<String, Object>> ambilData() {
+	 Map<String, Object> othersParam = new HashMap<String, Object>();
+	 othersParam.put("value_cb", selectedOthers);
+	 List<Map<String, Object>> l = ClientsUtil.callWsListResponse(
+	 "/lra_report/get_lra_report_data", othersParam,
+	 HttpMethod.POST, "tahun_anggaran=2016", "periode_id="
+	 + selectedPeriodeLaporan, "kode_laporan="
+	 + selectedJenisLaporan);
+	 return l;
+	 }
+
+//	public Map<String, Object> ambilData() {
+//		Map<String, Object> othersParam = new HashMap<String, Object>();
+//		othersParam.put("value_cb", selectedOthers);
+//		Map<String, Object> l = ClientsUtil.callWsMapResponse(
+//				"/lra_report/get_lra_report_data", othersParam,
+//				HttpMethod.POST, "tahun_anggaran=2016", "periode_id="
+//						+ selectedPeriodeLaporan, "kode_laporan="
+//						+ selectedJenisLaporan);
+//		return l;
+//	}
 
 	// public void chooseJenisLaporan(AjaxBehaviorEvent event){
 	public void chooseJenisLaporan(ValueChangeEvent event) {
@@ -100,16 +111,18 @@ public class Pelaporan implements Serializable {
 			selectOneOthers = getDataSelectOthers(kodeLaporan);
 		}
 	}
-	
-	//TODO memilih download
+
+	// TODO memilih download
 	public void chooseDownload(ValueChangeEvent event) {
 		LOGGER.info("<<chooseDownload>>");
 		String val = event.getNewValue().toString();
 		LOGGER.info("<<val={}>>", val);
-		if("JSON".equals(val)){
-//			InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/demo/images/boromir.jpg");
-//			InputStream stream = new 
-//			StreamedContent  file = new DefaultStreamedContent(stream, "image/jpg", "downloaded_boromir.jpg");
+		if ("JSON".equals(val)) {
+			// InputStream stream =
+			// FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/demo/images/boromir.jpg");
+			// InputStream stream = new
+			// StreamedContent file = new DefaultStreamedContent(stream,
+			// "image/jpg", "downloaded_boromir.jpg");
 		}
 	}
 
@@ -131,7 +144,9 @@ public class Pelaporan implements Serializable {
 		int kodeLaporan = NumberUtils.toInteger(selectedJenisLaporan);
 		if (kodeLaporan == 1 || kodeLaporan == 2 || kodeLaporan == 3
 				|| kodeLaporan == 4) {
-			dataPencarian = ambilData();
+			dataPencarian = ambilData() ;
+//			dataPencarian = ambilData() == null ? new ArrayList<Map<String, Object>>()
+//					: (ArrayList<Map<String,Object>>)ambilData().get("list_tingkat1");
 		}
 
 	}
@@ -194,14 +209,6 @@ public class Pelaporan implements Serializable {
 		this.selectedPeriodeLaporan = selectedPeriodeLaporan;
 	}
 
-	public List<Map<String, Object>> getDataPencarian() {
-		return dataPencarian;
-	}
-
-	public void setDataPencarian(List<Map<String, Object>> dataPencarian) {
-		this.dataPencarian = dataPencarian;
-	}
-
 	public List<Map<String, Object>> getSelectOneDownload() {
 		return selectOneDownload;
 	}
@@ -216,6 +223,14 @@ public class Pelaporan implements Serializable {
 
 	public void setSelectedDownload(String selectedDownload) {
 		this.selectedDownload = selectedDownload;
+	}
+
+	public List<Map<String, Object>> getDataPencarian() {
+		return dataPencarian;
+	}
+
+	public void setDataPencarian(List<Map<String, Object>> dataPencarian) {
+		this.dataPencarian = dataPencarian;
 	}
 
 }

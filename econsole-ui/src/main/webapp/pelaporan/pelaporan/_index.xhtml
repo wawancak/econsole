@@ -58,16 +58,16 @@
 					<!-- 						</f:selectItems> -->
 					<!-- 					</p:selectOneMenu> -->
 					<div align="right">
-						<p:commandButton ajax="false" icon="fa fa-file-excel-o" >
+						<p:commandButton ajax="false" icon="fa fa-file-excel-o">
 							<p:dataExporter type="xls" target="listData" fileName="LRA" />
 						</p:commandButton>
-						<p:commandButton ajax="false" icon="fa fa-file-text-o" >
+						<p:commandButton ajax="false" icon="fa fa-file-text-o">
 							<p:dataExporter type="csv" target="listData" fileName="LRA" />
 						</p:commandButton>
-						<p:commandButton ajax="false" icon="fa fa-file-pdf-o" >
+						<p:commandButton ajax="false" icon="fa fa-file-pdf-o">
 							<p:dataExporter type="pdf" target="listData" fileName="LRA" />
 						</p:commandButton>
-						
+
 					</div>
 
 
@@ -75,47 +75,89 @@
 			</div>
 
 			<div>
+				<h:dataTable id="listData" value="#{pelaporan.dataPencarian}"
+					var="dataTingkat1" border="1">
+					<!-- 										<h:column> -->
+					<!-- 											<h:outputText value="#{dataList.nm_rek_1}" /> -->
+					<!-- 										</h:column> -->
 
-				<p:dataTable id="listData" var="dataKeluar" paginator="true"
-					rows="20" value="#{pelaporan.dataPencarian}"
-					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+					<h:column>
 
+						<h:dataTable value="#{dataTingkat1.list_tingkat2}"
+							var="dataTingkat2" border="1">
+							<f:facet name="header">
+								<h:outputText value="#{dataTingkat1.nm_rek_1}" />
+							</f:facet>
+							<h:column>
 
-					<!-- 					<p:column headerText="Kelompok 1"> -->
-					<!-- 						<h:outputText value="#{dataKeluar.kd_rek_1}" /> -->
-					<!-- 					</p:column> -->
-					<!-- 					<p:column headerText="Kelompok 2"> -->
-					<!-- 						<h:outputText value="#{dataKeluar.kd_rek_2}" /> -->
-					<!-- 					</p:column> -->
-					<!-- 					<p:column headerText="Kelompok 3"> -->
-					<!-- 						<h:outputText value="#{dataKeluar.kd_rek_3}" /> -->
-					<!-- 					</p:column> -->
-					<!-- 					<p:column headerText="Kelompok 4"> -->
-					<!-- 						<h:outputText value="#{dataKeluar.kd_rek_4}" /> -->
-					<!-- 					</p:column> -->
+								<h:outputText value="#{dataTingkat2.nm_rek_2}" />
+							</h:column>
+							<h:column>
+								<h:dataTable value="#{dataTingkat2.list_tingkat3}"
+									var="dataTingkat3" border="1" styleClass="order-table"
+									headerClass="order-table-header"
+									rowClasses="order-table-odd-row,order-table-even-row">
+									<h:column>
+										<h:outputText value="#{dataTingkat3.kode_akun}" />
+									</h:column>
+									<h:column>
+										<h:outputText value="#{dataTingkat3.nm_rek_3}" />
+									</h:column>
+									<h:column>
 
-					<p:column headerText="Kode Akun">
-						<h:outputText value="#{dataKeluar.kode_akun}" />
-					</p:column>
+										<h:outputText value="#{dataTingkat3.sebelum_eliminasi}">
+											<f:convertNumber type="currency" pattern="#,##0" />
+										</h:outputText>
+										<f:facet name="footer">
+											<h:outputText value="#{dataTingkat2.sum_sebelum_kd_rek_2}">
+												<f:convertNumber type="currency" pattern="#,##0" />
+											</h:outputText>
+										</f:facet>
+									</h:column>
+									<h:column>
+										<h:outputText value="#{dataTingkat3.setelah_eliminasi}">
+											<f:convertNumber type="currency" pattern="#,##0" />
+										</h:outputText>
+										<f:facet name="footer">
+											<h:outputText value="#{dataTingkat2.sum_setelah_kd_rek_2}">
+												<f:convertNumber type="currency" pattern="#,##0" />
+											</h:outputText>
+										</f:facet>
+									</h:column>
+									<!-- 									<f:facet name="footer"> -->
+									<!-- 										<h:column> -->
+									<!-- 											<h:outputText value="Total " /> -->
+									<!-- 											<h:outputText value="#{dataTingkat2.nm_rek_2}" /> -->
+									<!-- 										</h:column> -->
+									<!-- 										<h:column> -->
+									<!-- 											<h:outputText value="#{dataTingkat2.sum_sebelum_kd_rek_2}" /> -->
+									<!-- 										</h:column> -->
+									<!-- 										<h:column> -->
+									<!-- 											<h:outputText value="#{dataTingkat2.sum_setelah_kd_rek_2}" /> -->
+									<!-- 										</h:column> -->
+									<!-- 									</f:facet> -->
+								</h:dataTable>
+							</h:column>
+							<f:facet name="footer">
+								<h:column>
+									<h:outputText value="Total " />
+									<h:outputText value="#{dataTingkat1.nm_rek_1}" />
+								</h:column>
+								<h:column>
+									<h:outputText value="#{dataTingkat1.sum_sebelum_kd_rek_1}">
+										<f:convertNumber type="currency" pattern="#,##0" />
+									</h:outputText>
+								</h:column>
+								<h:column>
+									<h:outputText value="#{dataTingkat1.sum_setelah_kd_rek_1}">
+										<f:convertNumber type="currency" pattern="#,##0" />
+									</h:outputText>
+								</h:column>
+							</f:facet>
+						</h:dataTable>
+					</h:column>
+				</h:dataTable>
 
-					<p:column headerText="Uraian">
-						<h:outputText value="#{dataKeluar.nm_rek_5}" />
-					</p:column>
-
-					<p:column headerText="Sebelum Eliminasi">
-						<h:outputText value="#{dataKeluar.sebelum_eliminasi}">
-							<f:convertNumber type="currency" pattern="#,##0" />
-						</h:outputText>
-					</p:column>
-
-					<p:column headerText="Sesudah Eliminasi">
-						<h:outputText value="#{dataKeluar.setelah_eliminasi}">
-							<f:convertNumber type="currency" pattern="#,##0" />
-						</h:outputText>
-					</p:column>
-
-
-				</p:dataTable>
 
 			</div>
 		</h:form>
