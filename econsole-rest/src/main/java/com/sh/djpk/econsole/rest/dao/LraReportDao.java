@@ -22,5 +22,9 @@ public interface LraReportDao {
 			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
 	
 	List<HashMap> getPeriodeCb();
+	
+	List<HashMap> getLraReportDataTree(@Param("tahunAnggaran") String tahunAnggaran,
+			@Param("periodeId") int periodeId,
+			@Param("kodeLaporan") int kodeLaporan, @Param("othersParam") HashMap othersParam);
 
 }

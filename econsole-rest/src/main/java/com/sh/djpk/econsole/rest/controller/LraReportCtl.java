@@ -34,7 +34,7 @@ public class LraReportCtl {
 		LOGGER.info("get_lra_report_data");
 		RestResponse response = new RestResponse(RestResponse.OK_REST_STATUS,
 				"OK", null);
-		response.setContents(lraReportSvc.getLraReportData(tahunAnggaran,
+		response.setContents(lraReportSvc.getLraReportDataTree(tahunAnggaran,
 				periodeId, kodeLaporan, othersParam));
 		LOGGER.trace("response={}", JsonUtil.getJson(response));
 		return response;
