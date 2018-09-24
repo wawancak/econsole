@@ -28,10 +28,10 @@ public class RptRekapAkunEliminasiSvcImpl implements RptRekapAkunEliminasiSvc{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<HashMap> getOnPemda() {
+	public List<HashMap> getOnPemda(String kodePemda, String tahunAnggaran) {
 		LOGGER.info(
 				"try get data per Pemda");
-		List<HashMap> lst = rekapDao.getRekapEliminasi();
+		List<HashMap> lst = rekapDao.getRekapEliminasi(kodePemda,tahunAnggaran);
 		
 		LOGGER.trace("data from db={}", lst);
 		

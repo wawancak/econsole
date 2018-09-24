@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +26,15 @@ public class RptRekapAkunEliminasiCtl {
 
 	@Autowired RptRekapAkunEliminasiSvc rekapSvc;
 	
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public RestResponse getAll() {
+	@RequestMapping(value = "/all/{kodePemda}/{tahunAnggaran}", method = RequestMethod.GET)
+	public RestResponse getAll(
+			@PathVariable(value = "kodePemda") String kodePemda,
+			@PathVariable(value = "tahunAnggaran") String tahunAnggaran
+			) {
 		LOGGER.info("GET ALL");
 		RestResponse response = new RestResponse(RestResponse.OK_REST_STATUS,
 				"OK", null);
-		List<HashMap>  lst = rekapSvc.getOnPemda();
+		List<HashMap>  lst = rekapSvc.getOnPemda(kodePemda,tahunAnggaran);
 		response.setTotalRecords(lst.size());
 		response.setContents(lst);
 		return response;

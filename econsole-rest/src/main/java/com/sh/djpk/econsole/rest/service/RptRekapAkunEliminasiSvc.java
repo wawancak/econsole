@@ -7,6 +7,6 @@ import com.sh.djpk.share.model.User;
 
 public interface RptRekapAkunEliminasiSvc {
 
-	List<HashMap> getOnPemda();
+	List<HashMap> getOnPemda(String kodePemda, String tahunAnggaran);
 	
 }

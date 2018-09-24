@@ -10,11 +10,17 @@ import org.apache.ibatis.annotations.Param;
 public interface RptRekapAkunEliminasiDao {
 	
 	
-	List<HashMap> getRekapEliminasi();
+	List<HashMap> getRekapEliminasi(
+			@Param("kodePemda") String kdpemda,
+			@Param("tahunAnggaran") String tahunAnggaran
+			);
 	
-	HashMap getSaldoAkun(@Param("tahunAnggaran") String tahunAnggaran,
+	HashMap getSaldoAkun(
+			@Param("tahunAnggaran") String tahunAnggaran,
 			@Param("periodeId") int periodeId,
-			@Param("level3") String level3, @Param("kodePemda") String kdpemda );
+			@Param("level3") String level3, 
+			@Param("kodePemda") String kdpemda 
+			);
 	
 	
 
