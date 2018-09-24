@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sh.djpk.econsole.rest.dao.AkunEliminasiDao">
+
+	<select id="getEliminasi" resultType="hashmap">
+		select 
+		concat(a.kd_pemda, b.urpemda) as pemda,a.transfer_id, concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3)  as level3,
+		concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3,'.',a.kd_rek_4,'.',a.kd_rek_5) as level5,
+		case WHEN c.nm_akrual_3 ISNULL THEN 'Rek gak tahu' ELSE c.nm_akrual_3 end, 
+		case 
+			WHEN a.transfer_id = 1 THEN 'Regional Dalam Provinsi'  
+			WHEN a.transfer_id = 2 then 'Antar Provinsi Dalam Wilayah' 
+			WHEN a.transfer_id = 3 then 'Antar Provinsi Luar Wilayah dan Pusat' else ''  
+		end as jenis_transfer
+		from 
+		elimination_account a
+		LEFT JOIN ref_pemda2 b on concat(kdprovinsi,'.',kdpemda ) =  a.kd_pemda 
+		LEFT JOIN ref_akrual_3 c on concat(c.kd_akrual_1,'.',c.kd_akrual_2,'.',c.kd_akrual_3) = concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3)
+		where
+		a.tahun = #{tahunAnggaran}
+		and a.tahun = b.tahun
+		ORDER BY kd_pemda,level3,level5
+		
+	</select>
+	
+	<select id="getEliminasiPemda" resultType="hashmap">
+		select 
+		concat(a.kd_pemda, b.urpemda) as pemda,a.transfer_id, concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3)  as level3,
+		concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3,'.',a.kd_rek_4,'.',a.kd_rek_5) as level5,
+		case WHEN c.nm_akrual_3 ISNULL THEN 'Rek gak tahu' ELSE c.nm_akrual_3 end, 
+		case 
+			WHEN a.transfer_id = 1 THEN 'Regional Dalam Provinsi'  
+			WHEN a.transfer_id = 2 then 'Antar Provinsi Dalam Wilayah' 
+			WHEN a.transfer_id = 3 then 'Antar Provinsi Luar Wilayah dan Pusat' else ''  
+		end as jenis_transfer
+		from 
+		elimination_account a
+		LEFT JOIN ref_pemda2 b on concat(kdprovinsi,'.',kdpemda ) =  a.kd_pemda 
+		LEFT JOIN ref_akrual_3 c on concat(c.kd_akrual_1,'.',c.kd_akrual_2,'.',c.kd_akrual_3) = concat(a.kd_rek_1,'.',a.kd_rek_2,'.',a.kd_rek_3)
+		where
+		a.tahun = #{tahunAnggaran}
+		and a.kd_pemda = #{kodePemda}
+		and a.tahun = b.tahun
+		ORDER BY kd_pemda,level3,level5
+		
+	</select>
+	
+	
+
+
+</mapper>
