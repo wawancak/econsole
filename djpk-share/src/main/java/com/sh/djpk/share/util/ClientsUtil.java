@@ -21,6 +21,7 @@ public class ClientsUtil {
 	private static Logger LOGGER = LoggerFactory.getLogger(ClientsUtil.class);
 
 	protected final static String WS_URL = "http://localhost:6060/econsole-rest";
+//	protected final static String WS_URL = "http://103.82.243.62:6060/econsole-rest";
 //	protected final static String WS_URL = "http://djpk.repomyapps.com/econsole-rest";
 //	protected final static String WS_URL = "http://repomyapps.com:9977/econsole-rest";
 
