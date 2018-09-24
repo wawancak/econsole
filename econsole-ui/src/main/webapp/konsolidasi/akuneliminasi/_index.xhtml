@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:form>
+
+<ui:composition template="./../../template/template-base.xhtml">
+
+	
+	<ui:define name="content">
+		Akun Eliminasi
+	
+        <p:dataTable id="dataTable" var="mapAkun" value="#{akunEliminasi.mapAkun}"
+                 paginator="true" 
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" 
+                 paginatorPosition="bottom"
+                 rows="20">
+                
+        <f:facet name="header">
+            Akun Eliminasi
+            
+            
+        </f:facet>
+        
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Pemda" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.pemda}" />
+        </p:column>
+ 		
+ 		<p:column>
+            <f:facet name="header">
+                <h:outputText value="Jenis Transfer" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.jenis_transfer}" />
+        </p:column>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Akun" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.level5}" />
+        </p:column>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Nama Akrual 3" />
+            </f:facet>
+            <h:outputText value="#{mapAkun.nm_akrual_3}" />
+        </p:column>
+        
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Aksi" />
+                	
+            </f:facet>
+            <p:commandButton icon="fa fa-eye" />
+					<p:commandButton icon="fa fa-user" />
+					<p:commandButton icon="fa fa-trash" />
+            
+        </p:column>
+ 
+       
+    </p:dataTable>
+ 
+    
+    </ui:define>	
+     
+
+</ui:composition>
+</h:form>
+</html>
+
